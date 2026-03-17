@@ -3,7 +3,7 @@ backend:
   repo: KevinSilva121/portfolioAlice
   branch: main
   # TODO: Configurar URL do Netlify de Autenticação para login no Github Pages
-  # base_url: https://seusite-auth.netlify.app
+  base_url: https://willowy-pothos-7ab5a0.netlify.app/
 
 media_folder: "public/media"
 public_folder: "/media"
