@@ -130,5 +130,10 @@
   .footer-content {
     grid-template-columns: 1fr;
     gap: 3rem;
+    margin-bottom: 6rem;
+  }
+  
+  .footer-bottom {
+    padding-bottom: 4rem; /* Evita que o botão flutuante bloqueie o texto em telas pequenas */
   }
 }

@@ -107,4 +107,12 @@
   .links-grid {
     grid-template-columns: 1fr;
   }
+  .link-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+  .link-icon-wrapper svg {
+    width: 26px;
+    height: 26px;
+  }
 }

@@ -93,6 +93,10 @@
 }
 
 @media (max-width: 768px) {
+  .navbar.menu-open {
+    background-color: var(--bg-primary);
+  }
+
   .mobile-menu-btn {
     display: block;
   }

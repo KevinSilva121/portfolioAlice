@@ -61,6 +61,7 @@
 .method p {
   color: var(--text-muted);
   font-size: 0.95rem;
+  word-break: break-word;
 }
 
 .form-content {

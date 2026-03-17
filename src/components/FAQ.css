@@ -62,8 +62,19 @@
 }
 
 .faq-answer-wrapper {
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+.faq-answer-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.faq-answer-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.faq-answer-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.5);
+  border-radius: 3px;
 }
 
 .faq-answer {

@@ -127,3 +127,9 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 480px) {
+  .blog-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}

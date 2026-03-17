@@ -58,7 +58,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
       <div className="container nav-container">
         <RouterLink to="/" className="nav-logo" onClick={() => window.scrollTo(0, 0)}>
           Alice <span>Camargo</span>
