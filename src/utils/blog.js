@@ -1,7 +1,7 @@
 import fm from 'front-matter';
 
 // Busca automaticamente todos os arquivos markdown na pasta blog durante o build do Vite
-const markdownFiles = import.meta.glob('../content/blog/*.md', { as: 'raw', eager: true });
+const markdownFiles = import.meta.glob('../content/blog/*.md', { query: '?raw', import: 'default', eager: true });
 
 export function getAllPosts() {
   const posts = Object.keys(markdownFiles).map((filepath) => {

@@ -16,6 +16,7 @@
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .expertise-card::before {
