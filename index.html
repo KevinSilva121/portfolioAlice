@@ -8,6 +8,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      // Netlify Identity uses hash fragments (#invite_token=, #confirmation_token=, etc.)
+      // to handle invite acceptance and other auth flows. Since this app uses HashRouter,
+      // these tokens would be consumed by React Router, causing a blank page.
+      // This script runs before React (module scripts are deferred) to handle them.
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

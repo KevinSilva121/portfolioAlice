@@ -1,13 +1,10 @@
 backend:
-  name: github
-  repo: KevinSilva121/portfolioAlice
+  name: git-gateway
   branch: main
-  # TODO: Configurar URL do Netlify de Autenticação para login no Github Pages
-  # base_url: https://seusite-auth.netlify.app
 
 media_folder: "public/media"
 public_folder: "/media"
-site_url: "https://KevinSilva121.github.io/portfolioAlice"
+site_url: "https://willowy-pothos-7ab5a0.netlify.app"
 logo_url: "/favicon.svg"
 
 collections:
