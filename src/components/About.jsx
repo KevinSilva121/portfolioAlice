@@ -11,8 +11,8 @@ const About = () => {
         <div className="about-grid">
           <div className="about-image-wrapper animate-on-scroll">
             <div className="image-frame">
-              {/* O usuário enviou uma foto, que deverá estar em /public/alice.png */}
-              <img src="/alice.png" alt="Alice Gabriela Camargo" className="about-image" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+              {/* A foto deverá estar em /public/alice.png. O Vite cuidará do base url */}
+              <img src={`${import.meta.env.BASE_URL}alice.png`} alt="Alice Gabriela Camargo" className="about-image" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
               <div className="image-placeholder" style={{ display: 'none', backgroundColor: '#334155', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', color: '#D4AF37', fontFamily: 'Playfair Display' }}>
                 <h3>A. C.</h3>
               </div>

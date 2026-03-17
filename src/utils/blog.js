@@ -12,9 +12,16 @@ export function getAllPosts() {
     const { attributes, body } = fm(rawContent);
     const fileName = filepath.replace('../content/blog/', '').replace('.md', '');
     
+    // Corrige caminho da imagem caso use CMS na subpasta do github pages
+    let thumbnail = attributes.thumbnail;
+    if (thumbnail && thumbnail.startsWith('/')) {
+      thumbnail = `${import.meta.env.BASE_URL}${thumbnail.slice(1)}`;
+    }
+    
     return {
       slug: fileName,
       ...attributes,
+      thumbnail,
       body
     };
   });
