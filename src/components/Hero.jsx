@@ -46,7 +46,7 @@ const Hero = () => {
 
       <div className="container hero-content">
         <div className="hero-badge animate-on-scroll">
-          <Scale size={16} /> Advogada | OAB/SP 529.641
+          <Scale size={16} /> Advocacia e Consultoria Jurídica | OAB/SP 529.641
         </div>
         
         <h1 className="hero-title animate-on-scroll" style={{ animationDelay: '0.2s' }}>
