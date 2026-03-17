@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: KevinSilva121/portfolioAlice
+  branch: main
+  # TODO: Configurar URL do Netlify de Autenticação para login no Github Pages
+  # base_url: https://seusite-auth.netlify.app
+
+media_folder: "public/media"
+public_folder: "/media"
+site_url: "https://KevinSilva121.github.io/portfolioAlice"
+logo_url: "/favicon.svg"
+
+collections:
+  - name: "blog"
+    label: "Artigos do Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Resumo", name: "excerpt", widget: "text", hint: "Texto curto que aparece na listagem dos posts"}
+      - {label: "Imagem de Capa (opcional)", name: "thumbnail", widget: "image", required: false}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}

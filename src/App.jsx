@@ -1,3 +1,4 @@
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,9 +10,22 @@ import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import CustomCursor from './components/CustomCursor';
+import BlogSection from './components/BlogSection';
+import BlogList from './pages/BlogList';
+import BlogPost from './pages/BlogPost';
 import './App.css';
 
-function App() {
+// Componente para rolar a tela pro topo quando a rota muda
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
+// Layout Principal (Landing Page)
+const Home = () => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -28,21 +42,35 @@ function App() {
   }, []);
 
   return (
-    <div className="app-wrapper">
-      <CustomCursor />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Expertise />
-        <FAQ />
-        <UsefulLinks />
-        <ContactForm />
-      </main>
-      <Footer />
-      <FloatingWhatsApp />
-    </div>
-  )
+    <main>
+      <Hero />
+      <About />
+      <Expertise />
+      <BlogSection />
+      <FAQ />
+      <UsefulLinks />
+      <ContactForm />
+    </main>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="app-wrapper">
+        <CustomCursor />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+        <Footer />
+        <FloatingWhatsApp />
+      </div>
+    </Router>
+  );
 }
 
 export default App;

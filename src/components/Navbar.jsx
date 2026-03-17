@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,19 +22,54 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const handleNavClick = (section) => {
+    setMenuOpen(false);
+    if (!isHome) {
+      navigate('/');
+      // Aguarda o componente da página inicial carregar antes de rolar a tela
+      setTimeout(() => {
+        const el = document.getElementById(section);
+        if (el) {
+          window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  // Helper para renderizar os botões dinamicamente dependendo da rota atual
+  const NavItem = ({ to, children, className = '' }) => {
+    if (to === 'blog') {
+      return <RouterLink to="/blog" onClick={() => setMenuOpen(false)} className={className}>{children}</RouterLink>;
+    }
+    
+    if (isHome) {
+      return (
+        <ScrollLink to={to} spy={true} smooth={true} offset={-70} duration={500} onClick={() => setMenuOpen(false)} className={className}>
+          {children}
+        </ScrollLink>
+      );
+    }
+
+    return (
+      <span onClick={() => handleNavClick(to)} className={`nav-span ${className}`} style={{cursor: 'pointer'}}>
+        {children}
+      </span>
+    );
+  };
+
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <a href="#" className="nav-logo">
+        <RouterLink to="/" className="nav-logo" onClick={() => window.scrollTo(0, 0)}>
           Alice <span>Camargo</span>
-        </a>
+        </RouterLink>
         
         <nav className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-          <Link to="home" spy={true} smooth={true} offset={-70} duration={500} onClick={() => setMenuOpen(false)}>Início</Link>
-          <Link to="about" spy={true} smooth={true} offset={-70} duration={500} onClick={() => setMenuOpen(false)}>Sobre</Link>
-          <Link to="expertise" spy={true} smooth={true} offset={-70} duration={500} onClick={() => setMenuOpen(false)}>Áreas de Atuação</Link>
-          <Link to="faq" spy={true} smooth={true} offset={-70} duration={500} onClick={() => setMenuOpen(false)}>Dúvidas Frequentes</Link>
-          <Link to="footer" spy={true} smooth={true} offset={-70} duration={500} className="contacto-link" onClick={() => setMenuOpen(false)}>Contato</Link>
+          <NavItem to="home">Início</NavItem>
+          <NavItem to="about">Sobre</NavItem>
+          <NavItem to="expertise">Áreas de Atuação</NavItem>
+          <NavItem to="blog">Blog</NavItem>
+          <NavItem to="footer" className="contacto-link">Contato</NavItem>
         </nav>
 
         <button className="mobile-menu-btn" onClick={toggleMenu}>
