@@ -59,8 +59,8 @@ const Hero = () => {
         </p>
         
         <div className="hero-actions animate-on-scroll" style={{ animationDelay: '0.6s' }}>
-          <Link to="footer" smooth={true} offset={-70} duration={500} className="btn btn-primary">
-            Fale com uma Especialista <ChevronRight size={18} />
+          <Link to="contact-form" smooth={true} offset={-70} duration={500} className="btn btn-primary">
+            Solicite uma análise do seu caso <ChevronRight size={18} />
           </Link>
           <Link to="expertise" smooth={true} offset={-70} duration={500} className="btn btn-outline">
             Conheça as Áreas de Atuação
