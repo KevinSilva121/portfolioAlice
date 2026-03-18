@@ -60,6 +60,13 @@ ul {
   padding: 0 2.5rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+
 /* Reusable Components */
 .section {
   padding: 8rem 0;

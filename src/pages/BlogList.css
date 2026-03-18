@@ -123,3 +123,42 @@
   margin-top: auto;
   align-self: flex-start;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .blog-page-header {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .blog-page-title {
+    font-size: 2.5rem;
+  }
+
+  .blog-page-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .blog-list-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .blog-list-content {
+    padding: 1.5rem;
+  }
+
+  .blog-list-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .blog-list-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-list-image {
+    height: 200px;
+  }
+}
+
