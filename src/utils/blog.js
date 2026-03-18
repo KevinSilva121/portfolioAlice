@@ -1,27 +1,17 @@
 import fm from 'front-matter';
 
-// Busca automaticamente todos os arquivos markdown na pasta blog durante o build do Vite
+// Carrega automaticamente todos os arquivos .md da pasta blog durante o build
 const markdownFiles = import.meta.glob('../content/blog/*.md', { query: '?raw', import: 'default', eager: true });
 
 export function getAllPosts() {
   const posts = Object.keys(markdownFiles).map((filepath) => {
-    const rawContent = typeof markdownFiles[filepath] === 'string' 
-      ? markdownFiles[filepath] 
-      : markdownFiles[filepath].default;
-      
+    const rawContent = markdownFiles[filepath];
     const { attributes, body } = fm(rawContent);
-    const fileName = filepath.replace('../content/blog/', '').replace('.md', '');
-    
-    // Corrige caminho da imagem caso use CMS na subpasta do github pages
-    let thumbnail = attributes.thumbnail;
-    if (thumbnail && thumbnail.startsWith('/')) {
-      thumbnail = `${import.meta.env.BASE_URL}${thumbnail.slice(1)}`;
-    }
-    
+    const slug = filepath.replace('../content/blog/', '').replace('.md', '');
+
     return {
-      slug: fileName,
+      slug,
       ...attributes,
-      thumbnail,
       body
     };
   });
@@ -35,6 +25,5 @@ export function getRecentPosts(limit = 3) {
 }
 
 export function getPostBySlug(slug) {
-  const posts = getAllPosts();
-  return posts.find((p) => p.slug === slug);
+  return getAllPosts().find((p) => p.slug === slug);
 }

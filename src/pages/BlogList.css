@@ -1,8 +1,7 @@
 .blog-page-container {
   min-height: 100vh;
-  padding-top: 100px; /* Space for navbar */
+  padding-top: 100px;
   background-color: var(--bg-primary);
-  padding-bottom: 6rem;
 }
 
 .blog-page-header {
