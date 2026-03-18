@@ -1,4 +1,4 @@
-import { ExternalLink, ShieldCheck, Scale, FileText, Landmark, Users } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Scale, FileText, Landmark, Users, BookOpen } from 'lucide-react';
 import './UsefulLinks.css';
 
 const UsefulLinks = () => {
@@ -32,6 +32,12 @@ const UsefulLinks = () => {
       description: 'Corte de uniformização da lei federal. Consulta processual abrangente (STJ).',
       url: 'https://www.stj.jus.br/',
       icon: <Users size={32} />
+    },
+    {
+      title: 'Jusbrasil',
+      description: 'Blog jurídico com artigos, jurisprudências e notícias sobre direito para cidadãos e profissionais.',
+      url: 'https://www.jusbrasil.com.br/',
+      icon: <BookOpen size={32} />
     }
   ];
 

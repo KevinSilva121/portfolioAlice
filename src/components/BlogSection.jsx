@@ -20,13 +20,8 @@ const BlogSection = () => {
     <section id="blog" className="section blog-preview-section">
       <div className="container">
         <div className="blog-header animate-on-scroll">
-          <div>
-            <h2 className="section-title text-left">Nosso Blog Jurídico</h2>
-            <p className="section-subtitle text-left mb-0">Artigos e orientações recentes para você ficar atualizado sobre seus direitos.</p>
-          </div>
-          <Link to="/blog" className="btn btn-outline view-all-btn">
-            Ver Todos Artigos <ArrowRight size={18} />
-          </Link>
+          <h2 className="section-title">Nosso Blog Jurídico</h2>
+          <p className="section-subtitle mb-0">Artigos e orientações recentes para você ficar atualizado sobre seus direitos.</p>
         </div>
 
         <div className="blog-preview-grid animate-on-scroll">
@@ -53,6 +48,12 @@ const BlogSection = () => {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="blog-footer animate-on-scroll">
+          <Link to="/blog" className="btn btn-outline view-all-btn">
+            Ver Todos Artigos <ArrowRight size={18} />
+          </Link>
         </div>
       </div>
     </section>
