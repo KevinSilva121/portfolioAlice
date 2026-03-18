@@ -1,6 +1,7 @@
 .blog-page-container {
   min-height: 100vh;
   padding-top: 100px;
+  padding-bottom: 6rem;
   background-color: var(--bg-primary);
 }
 

@@ -1,7 +1,6 @@
 import { ArrowLeft, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getAllPosts } from '../utils/blog';
-import UsefulLinks from '../components/UsefulLinks';
 import './BlogList.css';
 
 const BlogList = () => {
@@ -52,8 +51,6 @@ const BlogList = () => {
           </div>
         )}
       </div>
-
-      <UsefulLinks />
     </div>
   );
 };

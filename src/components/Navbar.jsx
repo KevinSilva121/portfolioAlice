@@ -30,7 +30,7 @@ const Navbar = () => {
       setTimeout(() => {
         const el = document.getElementById(section);
         if (el) {
-          window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+          window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
         }
       }, 100);
     }
@@ -44,7 +44,7 @@ const Navbar = () => {
     
     if (isHome) {
       return (
-        <ScrollLink to={to} spy={true} smooth={true} offset={-70} duration={500} onClick={() => setMenuOpen(false)} className={className}>
+        <ScrollLink to={to} spy={true} smooth={true} offset={-120} duration={500} onClick={() => setMenuOpen(false)} className={className}>
           {children}
         </ScrollLink>
       );
@@ -69,7 +69,7 @@ const Navbar = () => {
           <NavItem to="about">Sobre</NavItem>
           <NavItem to="expertise">Áreas de Atuação</NavItem>
           <NavItem to="blog">Blog</NavItem>
-          <NavItem to="footer" className="contacto-link">Contato</NavItem>
+          <NavItem to="contact-form" className="contacto-link">Contato</NavItem>
         </nav>
 
         <button className="mobile-menu-btn" onClick={toggleMenu}>

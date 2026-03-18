@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alice Gabriela Camargo - Advocacia Especializada</title>
+    <script>
+      // Truque para GitHub Pages + BrowserRouter (SPA redirect)
+      // Quando o GitHub Pages serve um 404, este script redireciona
+      // para o index.html preservando o caminho original na querystring.
+      (function () {
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/?p=' + encodeURIComponent(l.pathname + l.search) + l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
