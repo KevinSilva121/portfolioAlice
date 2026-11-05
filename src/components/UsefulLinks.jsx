@@ -1,4 +1,10 @@
 import { ExternalLink } from 'lucide-react';
+import tjspIcon from '../assets/img/icons/tjsp.webp';
+import inssIcon from '../assets/img/icons/inss.webp';
+import tstIcon from '../assets/img/icons/tst.webp';
+import oabIcon from '../assets/img/icons/oab.webp';
+import stjIcon from '../assets/img/icons/stj.webp';
+import jusbrasilIcon from '../assets/img/icons/jusbrasil.webp';
 import './UsefulLinks.css';
 
 const UsefulLinks = () => {
@@ -7,42 +13,42 @@ const UsefulLinks = () => {
       title: 'Tribunal de Justiça (TJSP)',
       description: 'Acompanhamento de processos civis, criminais e de família no Estado de São Paulo.',
       url: 'https://esaj.tjsp.jus.br/cpopg/open.do',
-      icon: '/icons/tjsp.png',
+      icon: tjspIcon,
       iconBg: '#ffffff'
     },
     {
       title: 'Meu INSS',
       description: 'Portal oficial para consulta de benefícios, extratos e agendamentos previdenciários.',
       url: 'https://meu.inss.gov.br/',
-      icon: '/icons/inss.png',
+      icon: inssIcon,
       iconBg: '#ffffff'
     },
     {
       title: 'Tribunal Superior do Trabalho',
       description: 'Consultas relacionadas aos direitos e jurisprudências das relações trabalhistas (TST).',
       url: 'https://www.tst.jus.br/',
-      icon: '/icons/tst.jpg',
+      icon: tstIcon,
       iconBg: '#ffffff'
     },
     {
       title: 'Consulta OAB/SP',
       description: 'Verifique a regularidade e os dados de inscrição dos profissionais da advocacia.',
       url: 'https://www.oabsp.org.br/',
-      icon: '/icons/oab.png',
+      icon: oabIcon,
       iconBg: '#ffffff'
     },
     {
       title: 'Superior Tribunal de Justiça',
       description: 'Corte de uniformização da lei federal. Consulta processual abrangente (STJ).',
       url: 'https://www.stj.jus.br/',
-      icon: '/icons/stj.png',
+      icon: stjIcon,
       iconBg: '#ffffff'
     },
     {
       title: 'Jusbrasil',
       description: 'Blog jurídico com artigos, jurisprudências e notícias sobre direito para cidadãos e profissionais.',
       url: 'https://www.jusbrasil.com.br/',
-      icon: '/icons/jusbrasil.png',
+      icon: jusbrasilIcon,
       iconBg: '#ffffff'
     }
   ];
@@ -66,7 +72,7 @@ const UsefulLinks = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="link-icon-wrapper">
-                <img src={link.icon} alt={link.title} />
+                <img src={link.icon} alt="" width="82" height="82" loading="lazy" decoding="async" />
               </div>
               <div className="link-content">
                 <h3 className="link-title">{link.title}</h3>

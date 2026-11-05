@@ -5,18 +5,21 @@
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
+  gap: clamp(2.5rem, 5vw, 4rem);
   align-items: center;
 }
 
+/* Foto em tamanho fixo (retrato 4:5, até 460px), sem esticar até a altura da coluna de texto. */
 .about-image-wrapper {
   position: relative;
-  height: 100%;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
 }
 
 .image-frame {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 5;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -56,7 +59,7 @@
   right: -30px;
   background-color: var(--bg-primary);
   border: 1px solid rgba(212, 175, 55, 0.3);
-  padding: 1.5rem;
+  padding: 1.25rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   z-index: 3;
@@ -67,7 +70,7 @@
 
 .badge-number {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   font-weight: 700;
   color: var(--accent-gold);
   line-height: 1;
@@ -89,7 +92,7 @@
 }
 
 .about-heading {
-  font-size: 3.5rem;
+  font-size: clamp(1.9rem, 2.8vw, 2.75rem);
   margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
@@ -97,21 +100,21 @@
 .about-oab {
   color: var(--accent-gold);
   font-weight: 500;
-  margin-bottom: 2rem;
-  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
 }
 
 .about-text {
   color: var(--text-secondary);
-  font-size: 1.25rem;
-  margin-bottom: 3rem;
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  margin-bottom: 2.25rem;
   line-height: 1.8;
 }
 
 .about-highlights {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .highlight-item {
@@ -123,7 +126,7 @@
 .highlight-icon {
   background-color: rgba(212, 175, 55, 0.1);
   color: var(--accent-gold);
-  padding: 1rem;
+  padding: 0.85rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -131,14 +134,14 @@
 }
 
 .highlight-item h4 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
 .highlight-item p {
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 992px) {
@@ -149,6 +152,11 @@
   .about-image-wrapper {
     max-width: 400px;
     margin: 0 auto;
+  }
+
+  /* no celular/tablet a foto continua quadrada, como antes */
+  .image-frame {
+    aspect-ratio: 1 / 1;
   }
   
   .experience-badge {
@@ -163,6 +171,6 @@
   }
 
   .about-heading {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 }

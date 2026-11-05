@@ -1,27 +1,33 @@
-import { Briefcase, Scale, HeartHandshake, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Briefcase, Scale, HeartHandshake, Users, ArrowRight } from 'lucide-react';
+import { getArea, areaPath } from '../content';
 import './Expertise.css';
 
 const Expertise = () => {
   const cards = [
     {
+      slug: 'direito-trabalhista',
       title: 'Direito do Trabalho',
       icon: <Briefcase size={36} />,
       desc: 'Defesa e orientação preventiva em questões trabalhistas para empregados e empregadores.',
       items: ['Reclamações trabalhistas', 'Assédio moral e sexual', 'Acidentes de trabalho', 'Consultoria preventiva']
     },
     {
+      slug: 'direito-previdenciario',
       title: 'Direito Previdenciário',
       icon: <Scale size={36} />,
       desc: 'Análise e planejamento para garantir os melhores benefícios junto ao INSS.',
       items: ['Aposentadorias (tempo, idade)', 'Auxílios (doença, acidente)', 'Pensão por morte', 'Planejamento previdenciário']
     },
     {
+      slug: 'direito-civil',
       title: 'Direito Cível',
       icon: <HeartHandshake size={36} />,
       desc: 'Resolução de conflitos de interesses cotidianos da sociedade com responsabilidade e sigilo.',
       items: ['Indenizações', 'Contratos e negócios', 'Direitos do consumidor', 'Cobranças indevidas']
     },
     {
+      slug: 'direito-de-familia',
       title: 'Direito de Família',
       icon: <Users size={36} />,
       desc: 'Atendimento sigiloso para tratar das questões mais sensíveis no meio familiar.',
@@ -50,6 +56,11 @@ const Expertise = () => {
                   <li key={id}>{item}</li>
                 ))}
               </ul>
+              {getArea(card.slug) && (
+                <Link to={areaPath(card.slug)} className="card-link">
+                  Saiba mais <span className="sr-only">sobre {card.title}</span> <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              )}
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 .faq-section {
   background-color: var(--bg-primary);
-  padding: 8rem 0;
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
 }
 
 .faq-container {

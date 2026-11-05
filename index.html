@@ -2,23 +2,22 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alice Gabriela Camargo - Advocacia Especializada</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0f172a" />
 
-    <!-- Legado do GitHub Pages: links antigos no formato /?p=/caminho continuam funcionando.
-         No Firebase as rotas já respondem 200 direto (rewrite em firebase.json). -->
+    <!-- Legado do GitHub Pages: links antigos no formato /?p=/caminho vão direto para a página certa. -->
     <script>
       (function () {
         var p = new URLSearchParams(window.location.search).get('p');
-        if (p) {
-          window.history.replaceState(null, null, decodeURIComponent(p));
-        }
+        if (p) window.location.replace(decodeURIComponent(p));
       })();
     </script>
+
+    <!--app-head-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

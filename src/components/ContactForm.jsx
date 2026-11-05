@@ -1,4 +1,6 @@
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { SITE, SITE_URL } from '../config/site';
 import './ContactForm.css';
 
 const ContactForm = () => {
@@ -12,17 +14,24 @@ const ContactForm = () => {
 
             <div className="form-contact-methods">
               <div className="method">
-                <Mail className="method-icon" />
+                <Mail className="method-icon" aria-hidden="true" />
                 <div>
-                  <h4>E-mail</h4>
-                  <p>alicegabrielacamargo@adv.oabsp.org.br</p>
+                  <h3>E-mail</h3>
+                  <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
                 </div>
               </div>
               <div className="method">
-                <MapPin className="method-icon" />
+                <Phone className="method-icon" aria-hidden="true" />
                 <div>
-                  <h4>Atendimento</h4>
-                  <p>Taubaté, SP | Consultas Online</p>
+                  <h3>Telefone / WhatsApp</h3>
+                  <p><a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a></p>
+                </div>
+              </div>
+              <div className="method">
+                <MapPin className="method-icon" aria-hidden="true" />
+                <div>
+                  <h3>Atendimento</h3>
+                  <p>Taubaté e região (com agendamento) | Online em todo o Brasil</p>
                 </div>
               </div>
             </div>
@@ -30,20 +39,21 @@ const ContactForm = () => {
 
           <form
             className="form-content"
-            action="https://formsubmit.co/alicegabrielacamargo@adv.oabsp.org.br"
+            action={`https://formsubmit.co/${SITE.email}`}
             method="POST"
           >
             {/* Configurações do FormSubmit */}
             <input type="hidden" name="_subject" value="Nova mensagem pelo site - Portfólio Jurídico" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={`${SITE_URL}/obrigado`} />
             <input
               type="hidden"
               name="_autoresponse"
               value="Sua mensagem foi recebida! Em breve entraremos em contato. Atenciosamente, Alice Gabriela Camargo."
             />
             {/* Honeypot anti-spam */}
-            <input type="text" name="_honey" style={{ display: 'none' }} />
+            <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
             <div className="form-group">
               <label htmlFor="name">Nome Completo</label>
@@ -52,6 +62,7 @@ const ContactForm = () => {
                 id="name"
                 name="name"
                 required
+                autoComplete="name"
                 placeholder="Como prefere ser chamado?"
               />
             </div>
@@ -64,6 +75,7 @@ const ContactForm = () => {
                   id="email"
                   name="email"
                   required
+                  autoComplete="email"
                   placeholder="seu@email.com"
                 />
               </div>
@@ -75,6 +87,7 @@ const ContactForm = () => {
                   id="phone"
                   name="phone"
                   required
+                  autoComplete="tel"
                   placeholder="(12) 90000-0000"
                 />
               </div>
@@ -91,8 +104,13 @@ const ContactForm = () => {
               ></textarea>
             </div>
 
+            <p className="form-privacy">
+              Seus dados são usados apenas para responder ao seu contato. Saiba mais na{' '}
+              <Link to="/privacidade">Política de Privacidade</Link>.
+            </p>
+
             <button type="submit" className="btn btn-primary submit-btn">
-              Enviar Mensagem <Send size={18} />
+              Enviar Mensagem <Send size={18} aria-hidden="true" />
             </button>
           </form>
         </div>

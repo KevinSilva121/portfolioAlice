@@ -16,11 +16,11 @@ const FAQ = () => {
     },
     {
       question: "Meu pedido de aposentadoria no INSS foi negado. Devo apenas aceitar ou abrir um novo?",
-      answer: "Em mais de 40% dos casos o INSS nega benefícios por falta de documentação adequada ou análise errada do servidor, e não pela falta do seu direito! Não desista e não abra um novo requerimento sem planejamento, pois isso pode zerar todo o tempo de espera dos meses em atraso. Nós fazemos a revisão completa do motivo da negativa administrativa e apresentamos o recurso necessário (Administrativo ou Judicial). Fale comigo no WhatsApp e me passe a carta do INSS para que possamos traçar a estratégia."
+      answer: "Muitas vezes o INSS nega benefícios por falta de documentação adequada ou por erro na análise, e não pela falta do direito. Não desista e não abra um novo requerimento sem planejamento, pois isso pode fazer você perder os valores atrasados desde o primeiro pedido. Nós fazemos a revisão completa do motivo da negativa administrativa e apresentamos o recurso necessário (Administrativo ou Judicial). Fale comigo no WhatsApp e me passe a carta do INSS para que possamos traçar a estratégia."
     },
     {
       question: "Sofri um acidente de trabalho e não sei se tenho algum amparo enquanto me recupero. Qual o próximo passo?",
-      answer: "Acidentes de trabalho resguardam direitos cruciais e urgentes para o acidentado, como o recebimento do Auxílio-Doença Acidentário (B91), a exigência de que a empresa arque com o depósito de seu FGTS durante seu afastamento, e até 12 meses de estabilidade ao retornar ao trabalho após a reabilitação. Muitas empresas tentam desviar de emitir a 'CAT' para encobrir a situação. Acione nosso WhatsApp agora para elaborarmos sua proteção patrimonial e não deixar que você seja prejudicado neste momento de fragilidade."
+      answer: "Acidentes de trabalho resguardam direitos cruciais e urgentes para o acidentado, como o recebimento do Auxílio-Doença Acidentário (B91), a exigência de que a empresa arque com o depósito de seu FGTS durante seu afastamento, e até 12 meses de estabilidade ao retornar ao trabalho após a reabilitação. Muitas empresas deixam de emitir a 'CAT', o comunicado oficial do acidente. Se quiser, fale pelo WhatsApp para entendermos a sua situação com calma e verificarmos quais direitos se aplicam ao seu caso."
     },
     {
       question: "Quero me divorciar, mas não sabemos como dividir os bens ou se preciso sair de casa agora. Como agir?",
@@ -32,11 +32,11 @@ const FAQ = () => {
     },
     {
       question: "Comprei algo pela internet, o produto veio com defeito e a loja diz não poder fazer nada. Quais meus direitos?",
-      answer: "O Código de Defesa do Consumidor é taxativo: Para compras efetuadas fora do estabelecimento físico, você detém do chamado 'Direito de Arrependimento', com um prazo de 7 dias contados a partir do recebimento do produto para solicitar estorno integral de qualquer valor. Para defeitos de fabricação em 'produtos duráveis' contata-se 90 dias com o fabricante. Fornecedores frequentemente negam isso para vencer o consumidor pelo cansaço. Envie-nos uma print expondo o nome da loja via WhatsApp e formularemos sua Notificação Extrajudicial."
+      answer: "O Código de Defesa do Consumidor é taxativo: Para compras efetuadas fora do estabelecimento físico, você detém do chamado 'Direito de Arrependimento', com um prazo de 7 dias contados a partir do recebimento do produto para solicitar estorno integral de qualquer valor. Para defeitos em 'produtos duráveis', o prazo para reclamar é de 90 dias (art. 26 do CDC). Fornecedores frequentemente negam isso para vencer o consumidor pelo cansaço. Envie-nos uma print expondo o nome da loja via WhatsApp e formularemos sua Notificação Extrajudicial."
     },
     {
       question: "Tenho sofrido ofensas/humilhações repetidas pelo meu chefe na frente dos outros colegas. Isso é causa ganha?",
-      answer: "Esta é a característica clássica de 'Assédio Moral no Trabalho', visando menosprezar ou adoecer o trabalhador. Não existem causas ganhas precocemente, mas os litígios ajuizados com um arcabouço sólido de provas (testemunhas visuais de confiança, registros de e-mail, áudios desproporcionais ou conversas digitais) tem ampla chance de indenização na Justiça do Trabalho. A depender da inviabilidade, entramos com pedido de Rescisão Indireta (uma demissão com justa causa na figura do patrão). Faça capturas de tela e fale conosco sigilosamente via WhatsApp."
+      answer: "Esta é a característica clássica de 'Assédio Moral no Trabalho', visando menosprezar ou adoecer o trabalhador. Não existem causas ganhas precocemente, mas os litígios ajuizados com um arcabouço sólido de provas (testemunhas visuais de confiança, registros de e-mail, áudios desproporcionais ou conversas digitais) podem levar ao reconhecimento do direito à indenização na Justiça do Trabalho, conforme as provas de cada caso. A depender da inviabilidade, entramos com pedido de Rescisão Indireta (uma demissão com justa causa na figura do patrão). Faça capturas de tela e fale conosco sigilosamente via WhatsApp."
     }
   ];
 
@@ -57,8 +57,10 @@ const FAQ = () => {
               className={`faq-item ${openIndex === index ? 'active' : ''}`}
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <button 
-                className="faq-question" 
+              <button
+                type="button"
+                className="faq-question"
+                aria-expanded={openIndex === index}
                 onClick={() => toggleFAQ(index)}
               >
                 <span>{faq.question}</span>

@@ -4,7 +4,7 @@
 
 .expertise-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 2rem;
 }
 
@@ -62,6 +62,20 @@
 
 .card-list {
   padding-left: 0;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.card-link:hover {
+  gap: 0.7rem;
 }
 
 .card-list li {

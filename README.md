@@ -1,143 +1,110 @@
 # ⚖️ Alice Gabriela Camargo — Site Institucional
 
-> **Site oficial da advogada Alice Gabriela Camargo**  
-> 🌐 Acesse em: [advalicecamargo.com.br](https://advalicecamargo.com.br)
+> **Site oficial da advogada Alice Gabriela Camargo** (OAB/SP 529.641)
+> 🌐 [advalicecamargo.com.br](https://advalicecamargo.com.br)
+
+Site institucional com áreas de atuação, páginas de serviços, blog jurídico e contato. Cada página é **gerada como HTML pronto no build** (pré-renderização), com título, descrição, Open Graph e dados estruturados próprios, e depois "acorda" no navegador como um app React.
 
 ---
 
-## 📋 Sobre o Projeto
+## 🛠️ Tecnologias
 
-Site institucional e portfólio profissional da **Dra. Alice Gabriela Camargo** (OAB/SP 529.641), desenvolvido para apresentar sua atuação jurídica, facilitar o contato de clientes e publicar conteúdo educativo sobre direito.
-
-O site foi construído com foco em **elegância, performance e experiência do usuário**, refletindo a seriedade e o profissionalismo da advocacia especializada.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-| Tecnologia | Finalidade |
+| Tecnologia | Uso |
 |---|---|
-| [React 19](https://react.dev/) | Framework principal |
-| [Vite 8](https://vitejs.dev/) | Build tool e dev server |
-| [React Router DOM v7](https://reactrouter.com/) | Roteamento (SPA com HashRouter) |
-| [Framer Motion](https://www.framer-motion.com/) | Animações e transições |
-| [Lucide React](https://lucide.dev/) | Ícones vetoriais |
-| [React Markdown](https://github.com/remarkjs/react-markdown) | Renderização dos posts do blog |
-| [React Scroll](https://github.com/fisshy/react-scroll) | Navegação suave entre seções |
-| [GitHub Pages](https://pages.github.com/) | Hospedagem e deploy |
-| CSS Vanilla | Estilização customizada |
+| React 19 + React Router 7 | Interface e rotas (BrowserRouter no navegador, StaticRouter no build) |
+| Vite 8 | Build e servidor de desenvolvimento |
+| Framer Motion (`LazyMotion`) | Animações do topo e do cursor |
+| Markdown + frontmatter | Conteúdo (artigos, áreas, serviços, páginas), convertido em HTML no build |
+| satori + resvg + sharp | Imagens de compartilhamento (1200×630) geradas no build |
+| Firebase Hosting | Hospedagem |
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📂 Onde fica cada coisa
 
 ```
-portfolio-alice/
-├── public/
-│   └── admin/
-│       └── config.yml        # Configuração do Decap CMS
-├── src/
-│   ├── assets/               # Imagens e recursos estáticos
-│   ├── components/           # Componentes reutilizáveis
-│   │   ├── Navbar.jsx        # Barra de navegação
-│   │   ├── Hero.jsx          # Seção principal (banner)
-│   │   ├── About.jsx         # Sobre a advogada
-│   │   ├── Expertise.jsx     # Áreas de atuação
-│   │   ├── BlogSection.jsx   # Preview do blog na landing page
-│   │   ├── FAQ.jsx           # Perguntas frequentes
-│   │   ├── UsefulLinks.jsx   # Links úteis (portais jurídicos)
-│   │   ├── ContactForm.jsx   # Formulário de contato
-│   │   ├── FloatingWhatsApp.jsx # Botão flutuante do WhatsApp
-│   │   ├── CustomCursor.jsx  # Cursor personalizado
-│   │   └── Footer.jsx        # Rodapé
-│   ├── pages/
-│   │   ├── BlogList.jsx      # Página com todos os artigos
-│   │   └── BlogPost.jsx      # Página individual de artigo
-│   ├── content/
-│   │   └── blog/             # Artigos em formato Markdown (.md)
-│   ├── App.jsx               # Componente raiz e rotas
-│   └── main.jsx              # Ponto de entrada da aplicação
-├── index.html
-├── vite.config.js
-└── package.json
+src/
+├── config/site.js        # Nome, OAB, telefone, e-mail, redes: muda tudo de uma vez
+├── content/
+│   ├── blog/             # Artigos (.md) → /blog/<arquivo>
+│   ├── areas/            # Áreas de atuação → /<arquivo>  (ex.: /direito-trabalhista)
+│   ├── servicos/         # Serviços → /<area>/<arquivo>    (ex.: /direito-previdenciario/bpc-loas)
+│   ├── paginas/          # Sobre e Política de Privacidade
+│   └── index.js          # Catálogo de conteúdo e rotas
+├── seo/                  # <head> por página (head.js) e dados estruturados (schema.js)
+├── pages/                # Páginas (Home, Blog, Artigo, Área/Serviço, Sobre, Contato, 404…)
+├── components/           # Componentes visuais
+├── entry-server.jsx      # Usado só no build para gerar o HTML
+└── main.jsx              # Entrada no navegador
+scripts/
+├── content-plugin.js     # Converte os .md em módulos (HTML pronto)
+├── prerender.js          # Gera o HTML de cada página, 404, sitemap e imagens de compartilhamento
+├── og-images.js          # Layout das imagens de compartilhamento
+└── optimize-images.js    # Gera as versões WebP das imagens (npm run images)
 ```
 
 ---
 
-## 🎯 Seções do Site
+## 📰 Publicar um artigo novo
 
-| Seção | Descrição |
-|---|---|
-| **Hero** | Banner principal com chamada para ação e animações de partículas |
-| **Sobre** | Apresentação da Dra. Alice, sua formação e valores |
-| **Áreas de Atuação** | Direito do Trabalho, Previdenciário, Cível e de Família |
-| **Blog** | Artigos jurídicos voltados à educação e orientação do cidadão |
-| **FAQ** | Perguntas frequentes sobre processos e atendimentos |
-| **Links Úteis** | Portais e sites oficiais do sistema jurídico brasileiro |
-| **Contato** | Formulário para solicitar análise de caso |
+1. Crie `src/content/blog/<slug-curto-sem-acento>.md` com o frontmatter:
 
----
+   ```yaml
+   ---
+   title: "Título do artigo"
+   date: 2026-11-20T10:00:00.000Z
+   updated: 2026-11-20
+   category: "direito-trabalhista"   # direito-trabalhista | direito-previdenciario | direito-civil | direito-de-familia
+   excerpt: "Resumo de 1-2 frases para o card do blog."
+   description: "Meta description de 140-155 caracteres."
+   thumbnail: ""
+   ---
+   ```
 
-## 📰 Blog Jurídico
+2. Escreva o texto em Markdown, com seções `##` (sem `#` no corpo).
+3. Rode `npm run build` e depois `npm run deploy`.
 
-Os artigos do blog são escritos em **Markdown** e ficam na pasta `src/content/blog/`. O site já conta com os seguintes artigos publicados:
+O artigo entra sozinho no blog, na página da área, nos "Leia também", no sitemap e ganha a imagem de compartilhamento. Há pautas prontas em [CALENDARIO-EDITORIAL.md](CALENDARIO-EDITORIAL.md).
 
-- 📄 Direitos Trabalhistas no Home Office
-- 📄 Direitos em Caso de Atraso de Voo
-- 📄 Distrato de Imóvel
-- 📄 Guarda Compartilhada
-- 📄 A Importância da Assessoria Jurídica
-- 📄 Planejamento Previdenciário
-
-Para **publicar um novo artigo**, basta criar um arquivo `.md` na pasta `src/content/blog/` seguindo o padrão de frontmatter já utilizado nos arquivos existentes.
+**Atenção:** o nome do arquivo vira a URL. Depois de publicado, não renomeie, ou o Google perde a página.
 
 ---
 
-## ⚙️ Como Rodar Localmente
+## ⚙️ Rodar localmente
 
-**Pré-requisitos:** Node.js 18+ e npm instalados.
+**Pré-requisitos:** Node.js 20+ e npm.
 
 ```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/portfolio-alice.git
-cd portfolio-alice
-
-# 2. Instale as dependências
 npm install
-
-# 3. Inicie o servidor de desenvolvimento
-npm run dev
+npm run dev       # desenvolvimento (http://localhost:5173)
+npm run build     # build completo: site + HTML de cada página + sitemap + imagens
+npm run lint
 ```
-
-Acesse `http://localhost:5173` no navegador.
 
 ---
 
 ## 🚀 Deploy
 
-O site é hospedado no **GitHub Pages** e o deploy é feito via `gh-pages`.
-
 ```bash
-# Gera o build de produção e faz o deploy automaticamente
-npm run deploy
+npm run deploy    # build + publicação no Firebase Hosting (projeto alicesite-305bc)
 ```
 
-O comando `npm run deploy`:
-1. Executa `npm run build` (gera a pasta `dist/`)
-2. Publica o conteúdo de `dist/` na branch `gh-pages`
-3. O GitHub Pages serve o site em `advalicecamargo.com.br`
+Para testar antes, sem afetar o site no ar:
 
----
+```bash
+npm run build
+firebase hosting:channel:deploy preview --expires 7d
+```
 
-## 🧑‍💼 Contato Profissional
+Documentos de apoio:
 
-| Canal | Informação |
-|---|---|
-| 🌐 Site | [advalicecamargo.com.br](https://advalicecamargo.com.br) |
-| ⚖️ OAB | OAB/SP 529.641 |
+- [MIGRACAO-DNS-FIREBASE.md](MIGRACAO-DNS-FIREBASE.md): troca do domínio do GitHub Pages para o Firebase.
+- [PLANO-MELHORIAS-SITE.md](PLANO-MELHORIAS-SITE.md): plano completo de SEO e desempenho.
+- [PRESENCA-LOCAL.md](PRESENCA-LOCAL.md): Perfil no Google, diretórios e avaliações.
+- [REVISAO-JURIDICA.md](REVISAO-JURIDICA.md): pontos para a Dra. Alice revisar antes de publicar.
 
 ---
 
 ## 📄 Licença
 
-Este projeto é de uso **privado e exclusivo** da Dra. Alice Gabriela Camargo. Todos os direitos reservados.
+Projeto de uso **privado e exclusivo** da Dra. Alice Gabriela Camargo. Todos os direitos reservados.

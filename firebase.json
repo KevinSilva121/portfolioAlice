@@ -5,8 +5,7 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
-      "CNAME",
-      "404.html"
+      "CNAME"
     ],
     "cleanUrls": false,
     "trailingSlash": false,
@@ -15,12 +14,6 @@
         "regex": "^/(?P<path>.+)/$",
         "destination": "/:path",
         "type": 301
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ],
     "headers": [
@@ -39,6 +32,15 @@
           {
             "key": "Cache-Control",
             "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/og/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=86400"
           }
         ]
       }

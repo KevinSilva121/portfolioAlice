@@ -19,7 +19,7 @@ Enquanto o DNS não for trocado, **`npm run deploy` atualiza só o Firebase** (`
 - **http → https é automático**, com redirect 301 (testado em `alicesite-305bc.web.app`). O comportamento é igual ao do GitHub hoje.
 - **O GitHub manda hoje o cabeçalho HSTS** (`Strict-Transport-Security`, validade de 1 ano). Quem já visitou o site tem isso guardado no navegador. Durante esse ano, se o domínio aparecer com certificado inválido, **o navegador bloqueia a página e não deixa "continuar assim mesmo"**.
 - Por isso a **configuração avançada é obrigatória**: nela o certificado do Firebase é emitido **antes** de o tráfego ir para lá, então não existe nenhum momento com certificado inválido. Com a configuração rápida, o certificado só seria emitido **depois** da troca, e visitantes recorrentes ficariam bloqueados por horas.
-- O Firebase também manda HSTS (`max-age` de 1 ano, `includeSubDomains`, `preload`). Na prática, **qualquer subdomínio futuro** (ex.: `blog.advalicecamargo.com.br`) precisa ter HTTPS.
+- No domínio próprio, o Firebase também manda HSTS com validade de 1 ano (testado: só `max-age`, sem `includeSubDomains`). Subdomínios futuros não são afetados.
 
 ## Registros DNS atuais — anote antes de mexer
 

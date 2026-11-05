@@ -1,6 +1,6 @@
 .blog-preview-section {
   background-color: var(--bg-secondary);
-  padding: 8rem 0;
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
 }
 
 .blog-header {
@@ -34,7 +34,7 @@
 
 .blog-preview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 2.5rem;
 }
 

@@ -1,11 +1,12 @@
 .links-section {
   background-color: var(--bg-secondary);
-  padding: 8rem 0;
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
 }
 
 .links-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 3, 2 ou 1 coluna conforme o espaço: o card nunca fica estreito a ponto de cortar o texto */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
   gap: 1.5rem;
   max-width: 1100px;
   margin: 0 auto;
@@ -21,7 +22,7 @@
   background-color: var(--bg-primary);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  padding: 2.2rem;
+  padding: clamp(1.5rem, 2.5vw, 2.2rem);
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
@@ -98,16 +99,13 @@
   color: var(--accent-gold);
 }
 
+/* Descrição sempre completa (antes era cortada em 2 linhas com "..."). */
 .link-desc {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
 .link-action {
@@ -121,22 +119,12 @@
   transform: translateX(4px) translateY(-4px);
 }
 
-@media (max-width: 900px) {
-  .links-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 700px;
-  }
-}
-
 @media (max-width: 600px) {
   .links-grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
     gap: 1.2rem;
   }
 
   .link-card {
-    padding: 1.6rem;
     gap: 1.2rem;
   }
 

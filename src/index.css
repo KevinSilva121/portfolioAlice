@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+/* Fontes servidas pelo próprio site (importadas em main.jsx via @fontsource), sem depender do Google Fonts. */
 
 :root {
   /* Premium Dark Theme variables */
@@ -57,24 +57,20 @@ ul {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2.5rem;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1.5rem;
-  }
+  /* Responsivo: as medidas encolhem junto com a janela (clamp: mínimo, proporcional, máximo),
+     sem saltos entre desktop, notebook, tablet e celular. */
+  padding: 0 clamp(1.5rem, 3.5vw, 2.5rem);
 }
 
 
 /* Reusable Components */
 .section {
-  padding: 8rem 0;
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
   position: relative;
 }
 
 .section-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
   margin-bottom: 1rem;
   text-align: center;
   color: var(--accent-gold);
@@ -83,8 +79,8 @@ ul {
 .section-subtitle {
   text-align: center;
   color: var(--text-secondary);
-  font-size: 1.25rem;
-  margin-bottom: 5rem;
+  font-size: clamp(1.05rem, 0.9rem + 0.45vw, 1.25rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
   max-width: 800px;
   margin-inline: auto;
 }
@@ -141,4 +137,97 @@ ul {
 .animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Utilitários */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.about-more {
+  margin-top: 2.5rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+/* Texto vindo do Markdown (artigos e páginas) */
+.post-body a {
+  color: var(--accent-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post-body a:hover {
+  color: var(--accent-gold-hover);
+}
+
+.post-body ul {
+  list-style: disc;
+}
+
+.post-body ol {
+  list-style: decimal;
+}
+
+.post-body li::marker {
+  color: var(--accent-gold);
+}
+
+.post-body h2,
+.post-body h3 {
+  scroll-margin-top: 120px;
+}
+
+.post-body .table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-body th {
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
+
+.post-body hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 3rem 0;
 }

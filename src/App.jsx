@@ -1,77 +1,64 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Expertise from './components/Expertise';
-import FAQ from './components/FAQ';
-import UsefulLinks from './components/UsefulLinks';
-import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import CustomCursor from './components/CustomCursor';
-import BlogSection from './components/BlogSection';
+import ScrollManager from './components/ScrollManager';
+import PageLoading from './components/PageLoading';
+import HeadManager from './seo/HeadManager';
+import useScrollReveal from './hooks/useScrollReveal';
+import Home from './pages/Home';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
-import { CanonicalUrl } from './utils/seo';
+import LandingPage from './pages/LandingPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import DocPage from './pages/DocPage';
+import ThanksPage from './pages/ThanksPage';
+import NotFound from './pages/NotFound';
+import { areas, services, areaPath, servicePath, getPage } from './content';
 import './App.css';
 
-// Componente para rolar a tela pro topo quando a rota muda
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
-
-// Layout Principal (Landing Page)
-const Home = () => {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const hiddenElements = document.querySelectorAll('.animate-on-scroll');
-    hiddenElements.forEach((el) => observer.observe(el));
-    
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <main>
-      <Hero />
-      <About />
-      <Expertise />
-      <BlogSection />
-      <FAQ />
-      <UsefulLinks />
-      <ContactForm />
-    </main>
-  );
-};
-
+// O roteador (BrowserRouter no navegador, StaticRouter no build) fica em main.jsx / entry-server.jsx.
 function App() {
+  useScrollReveal();
+
   return (
-    <Router>
-      <ScrollToTop />
-      <CanonicalUrl />
+    // LazyMotion + `m`: mesmas animações do framer-motion com bem menos JavaScript.
+    <LazyMotion features={domAnimation}>
+      <ScrollManager />
+      <HeadManager />
       <div className="app-wrapper">
         <CustomCursor />
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-        </Routes>
+        <Suspense fallback={<PageLoading />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            {areas.map((area) => (
+              <Route key={area.slug} path={areaPath(area.slug)} element={<LandingPage collection="areas" slug={area.slug} />} />
+            ))}
+            {services.map((service) => (
+              <Route
+                key={`${service.area}/${service.slug}`}
+                path={servicePath(service)}
+                element={<LandingPage collection="servicos" slug={service.slug} />}
+              />
+            ))}
+            {getPage('sobre') && <Route path="/sobre" element={<AboutPage />} />}
+            {getPage('privacidade') && <Route path="/privacidade" element={<DocPage slug="privacidade" />} />}
+            <Route path="/contato" element={<ContactPage />} />
+            <Route path="/obrigado" element={<ThanksPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
         <Footer />
         <FloatingWhatsApp />
       </div>
-    </Router>
+    </LazyMotion>
   );
 }
 

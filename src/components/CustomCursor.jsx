@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { m as Motion } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useClient';
 import './CustomCursor.css';
 
+// Mesmo critério do CSS (CustomCursor.css esconde o cursor nativo a partir de 769px).
+const DESKTOP_QUERY = '(min-width: 769px)';
+
 const CustomCursor = () => {
+  const isDesktop = useMediaQuery(DESKTOP_QUERY);
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0
   });
-  
+
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
+    if (!isDesktop) return;
+
     const mouseMove = e => {
       setMousePosition({
         x: e.clientX,
@@ -40,7 +47,7 @@ const CustomCursor = () => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, []);
+  }, [isDesktop]);
 
   const variants = {
     default: {
@@ -57,15 +64,16 @@ const CustomCursor = () => {
     }
   };
 
-  // Only render on desktop to avoid issues on touch devices
-  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+  // Só no desktop (no celular não há mouse); no HTML gerado no build também não aparece.
+  if (!isDesktop) {
     return null;
   }
 
   return (
     <>
-      <motion.div
+      <Motion.div
         className="cursor-dot"
+        aria-hidden="true"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
@@ -73,8 +81,9 @@ const CustomCursor = () => {
         }}
         transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
       />
-      <motion.div
+      <Motion.div
         className="cursor-ring"
+        aria-hidden="true"
         variants={variants}
         animate={isHovering ? "hover" : "default"}
         transition={{ type: "tween", ease: "backOut", duration: 0.15 }}

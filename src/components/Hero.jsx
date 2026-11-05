@@ -1,70 +1,81 @@
-import { Link } from 'react-scroll';
 import { Scale, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import SectionLink from './SectionLink';
+import { m as Motion } from 'framer-motion';
+import { useIsClient } from '../hooks/useClient';
+import heroBackground from '../assets/img/bg-law.webp';
 import './Hero.css';
 
+// Partículas sorteadas uma vez por visita, só no navegador (no HTML do build não existem,
+// para não haver diferença entre o HTML gerado e o que o React monta).
+let particleCache;
+function getParticles() {
+  if (!particleCache) {
+    particleCache = Array.from({ length: 25 }, () => ({
+      size: Math.random() * 4 + 1,
+      startX: Math.random() * 100,
+      startY: Math.random() * 100,
+      peak: Math.random() * 0.5 + 0.2,
+      path: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
+      duration: Math.random() * 15 + 15,
+      delay: Math.random() * 10,
+    }));
+  }
+  return particleCache;
+}
+
 const Hero = () => {
+  const isClient = useIsClient();
+
   return (
     <section id="home" className="hero">
-      <motion.div 
+      <Motion.div
         className="hero-background-image"
+        style={{ backgroundImage: `url(${heroBackground})` }}
         initial={{ scale: 1.15 }}
         animate={{ scale: 1 }}
         transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
-      ></motion.div>
+      ></Motion.div>
       <div className="hero-overlay"></div>
-      
+
       {/* Animated glowing particles */}
-      <div className="particles-container">
-        {[...Array(25)].map((_, i) => (
-          <motion.div
+      <div className="particles-container" aria-hidden="true">
+        {isClient && getParticles().map((p, i) => (
+          <Motion.div
             key={i}
             className="particle"
-            initial={{
-              opacity: 0,
-              y: Math.random() * 100 + "vh",
-              x: Math.random() * 100 + "vw",
-            }}
+            initial={{ opacity: 0, y: p.startY + "vh", x: p.startX + "vw" }}
             animate={{
-              opacity: [0, Math.random() * 0.5 + 0.2, 0],
-              y: [Math.random() * 100 + "vh", Math.random() * 100 + "vh"],
-              x: [Math.random() * 100 + "vw", Math.random() * 100 + "vw"],
+              opacity: [0, p.peak, 0],
+              y: [p.path[0] + "vh", p.path[1] + "vh"],
+              x: [p.path[2] + "vw", p.path[3] + "vw"],
             }}
-            transition={{
-              duration: Math.random() * 15 + 15,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * 10,
-            }}
-            style={{
-              width: Math.random() * 4 + 1 + "px",
-              height: Math.random() * 4 + 1 + "px",
-            }}
+            transition={{ duration: p.duration, repeat: Infinity, ease: "linear", delay: p.delay }}
+            style={{ width: p.size + "px", height: p.size + "px" }}
           />
         ))}
       </div>
 
       <div className="container hero-content">
-        <div className="hero-badge animate-on-scroll">
+        <div className="hero-badge hero-reveal">
           <Scale size={16} /> Advocacia e Consultoria Jurídica | OAB/SP 529.641
         </div>
-        
-        <h1 className="hero-title animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+
+        <h1 className="hero-title hero-reveal" style={{ animationDelay: '0.2s' }}>
           Protegendo seus direitos,<br />
           <span className="hero-highlight">construindo soluções.</span>
         </h1>
-        
-        <p className="hero-subtitle animate-on-scroll" style={{ animationDelay: '0.4s' }}>
+
+        <p className="hero-subtitle hero-reveal" style={{ animationDelay: '0.4s' }}>
           Atendimento humanizado e estratégico em Direito do Trabalho, Previdenciário, Cível e de Família.
         </p>
-        
-        <div className="hero-actions animate-on-scroll" style={{ animationDelay: '0.6s' }}>
-          <Link to="contact-form" smooth={true} offset={-120} duration={500} className="btn btn-primary">
+
+        <div className="hero-actions hero-reveal" style={{ animationDelay: '0.6s' }}>
+          <SectionLink section="contact-form" className="btn btn-primary">
             Solicite uma análise do seu caso <ChevronRight size={18} />
-          </Link>
-          <Link to="expertise" smooth={true} offset={-120} duration={500} className="btn btn-outline">
+          </SectionLink>
+          <SectionLink section="expertise" className="btn btn-outline">
             Conheça as Áreas de Atuação
-          </Link>
+          </SectionLink>
         </div>
       </div>
     </section>

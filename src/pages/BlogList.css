@@ -32,7 +32,7 @@
 }
 
 .blog-page-title {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
   margin-bottom: 1rem;
   color: var(--text-primary);
 }
@@ -49,8 +49,8 @@
 
 .blog-list-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(2rem, 3vw, 3rem);
 }
 
 .blog-list-card {

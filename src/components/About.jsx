@@ -1,4 +1,7 @@
-import { Award, Briefcase, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Award, Briefcase, GraduationCap, ArrowRight } from 'lucide-react';
+import alice480 from '../assets/img/alice-480.webp';
+import alice800 from '../assets/img/alice-800.webp';
 import './About.css';
 
 const About = () => {
@@ -11,8 +14,19 @@ const About = () => {
         <div className="about-grid">
           <div className="about-image-wrapper animate-on-scroll">
             <div className="image-frame">
-              {/* A foto deverá estar em /public/alice.png. O Vite cuidará do base url */}
-              <img src={`${import.meta.env.BASE_URL}alice.png`} alt="Alice Gabriela Camargo" className="about-image" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+              {/* Foto otimizada (WebP) gerada por scripts/optimize-images.js a partir de public/alice.png */}
+              <img
+                src={alice800}
+                srcSet={`${alice480} 480w, ${alice800} 800w`}
+                sizes="(max-width: 768px) 90vw, 560px"
+                width="800"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                alt="Dra. Alice Gabriela Camargo, advogada OAB/SP 529.641"
+                className="about-image"
+                onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+              />
               <div className="image-placeholder" style={{ display: 'none', backgroundColor: '#334155', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', color: '#D4AF37', fontFamily: 'Playfair Display' }}>
                 <h3>A. C.</h3>
               </div>
@@ -56,6 +70,10 @@ const About = () => {
                 </div>
               </div>
             </div>
+
+            <Link to="/sobre" className="text-link about-more">
+              Conheça a trajetória da Dra. Alice <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </div>
