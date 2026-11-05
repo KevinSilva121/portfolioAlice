@@ -13,6 +13,7 @@ import CustomCursor from './components/CustomCursor';
 import BlogSection from './components/BlogSection';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
+import { CanonicalUrl } from './utils/seo';
 import './App.css';
 
 // Componente para rolar a tela pro topo quando a rota muda
@@ -58,6 +59,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <CanonicalUrl />
       <div className="app-wrapper">
         <CustomCursor />
         <Navbar />

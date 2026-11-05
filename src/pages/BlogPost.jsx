@@ -1,19 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Share2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { getPostBySlug } from '../utils/blog';
+import { usePageMeta } from '../utils/seo';
 import './BlogPost.css';
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const [post, setPost] = useState(null);
+  // Busca direta (sem estado): o artigo já aparece no primeiro render,
+  // sem piscar "Artigo não encontrado" antes — inclusive para o Googlebot.
+  const post = getPostBySlug(slug);
+
+  usePageMeta(
+    post
+      ? { title: post.title, description: post.excerpt }
+      : { title: 'Artigo não encontrado', noindex: true }
+  );
 
   useEffect(() => {
-    const foundPost = getPostBySlug(slug);
-    if(foundPost) {
-       setPost(foundPost);
-    }
     window.scrollTo(0,0);
   }, [slug]);
 

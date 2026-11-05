@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://advalicecamargo.com.br/sitemap.xml

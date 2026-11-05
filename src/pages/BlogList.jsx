@@ -1,10 +1,15 @@
 import { ArrowLeft, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getAllPosts } from '../utils/blog';
+import { usePageMeta } from '../utils/seo';
 import './BlogList.css';
 
 const BlogList = () => {
   const posts = getAllPosts();
+  usePageMeta({
+    title: 'Blog Jurídico',
+    description: 'Informação clara, direta e preventiva para proteger o seu patrimônio financeiro e familiar.',
+  });
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };

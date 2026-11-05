@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alice Gabriela Camargo - Advocacia Especializada</title>
 
-    <!-- Decodifica o redirect do 404.html para o BrowserRouter funcionar no GitHub Pages -->
+    <!-- Legado do GitHub Pages: links antigos no formato /?p=/caminho continuam funcionando.
+         No Firebase as rotas já respondem 200 direto (rewrite em firebase.json). -->
     <script>
       (function () {
         var p = new URLSearchParams(window.location.search).get('p');
