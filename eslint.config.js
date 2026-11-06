@@ -28,7 +28,7 @@ export default defineConfig([
   },
   {
     // Scripts de build rodam no Node.
-    files: ['scripts/**/*.js', 'vite.config.js'],
+    files: ['scripts/**/*.js', 'functions/**/*.js', 'vite.config.js'],
     languageOptions: { globals: globals.node },
   },
   {

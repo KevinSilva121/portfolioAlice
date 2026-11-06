@@ -16,6 +16,15 @@
         "type": 301
       }
     ],
+    "rewrites": [
+      {
+        "source": "/api/contato",
+        "function": {
+          "functionId": "contato",
+          "region": "southamerica-east1"
+        }
+      }
+    ],
     "headers": [
       {
         "source": "**",
@@ -45,5 +54,23 @@
         ]
       }
     ]
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": ["node_modules", ".git", "*.local", ".env.local"]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "hosting": { "port": 5000 },
+    "functions": { "port": 5001 },
+    "firestore": { "port": 8080 },
+    "ui": { "enabled": false },
+    "singleProjectMode": true
   }
 }

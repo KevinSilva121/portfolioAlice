@@ -27,5 +27,13 @@ export const SITE = {
     'Advogada em Taubaté e região, com atendimento online em todo o Brasil. Direito do Trabalho, Previdenciário (INSS), Cível e de Família. OAB/SP 529.641.',
 };
 
-export const whatsappLink = (message = 'Olá Dra. Alice! Gostaria de agendar uma consulta.') =>
+// Envio do formulário de contato para a função do Firebase (functions/index.js), no próprio domínio.
+// O site envia em segundo plano, com tempo-limite e alternativa por WhatsApp/e-mail se falhar;
+// sem JavaScript, o navegador envia direto e é levado para /obrigado.
+export const CONTACT_FORM = {
+  endpoint: '/api/contato',
+  timeoutMs: 15000,
+};
+
+export const whatsappLink =(message = 'Olá Dra. Alice! Gostaria de agendar uma consulta.') =>
   `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;

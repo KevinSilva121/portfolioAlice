@@ -68,6 +68,50 @@
   line-height: 1.6;
 }
 
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  transform: none;
+}
+
+/* Alternativa quando o envio pelo formulário falha */
+.form-fallback {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 8px;
+  background-color: rgba(212, 175, 55, 0.08);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.form-fallback-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.form-fallback-title svg {
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.form-fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.form-fallback-actions .btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+}
+
 .form-privacy a {
   color: var(--accent-gold);
   text-decoration: underline;

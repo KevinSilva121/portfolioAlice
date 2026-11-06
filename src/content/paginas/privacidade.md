@@ -4,11 +4,11 @@ headline: "Política de Privacidade"
 seoTitle: "Política de Privacidade | Alice Camargo Advocacia"
 description: "Como o site advalicecamargo.com.br trata os dados pessoais enviados pelo formulário de contato e pelo WhatsApp, conforme a LGPD (Lei 13.709/2018)."
 intro: "Como os seus dados pessoais são tratados quando você entra em contato pelo site, de acordo com a Lei Geral de Proteção de Dados (LGPD)."
-updated: 2026-11-05
+updated: 2026-11-06
 ---
 Esta política explica quais dados pessoais são coletados pelo site **advalicecamargo.com.br**, para que são usados, com quem são compartilhados e quais são os seus direitos, nos termos da [Lei Geral de Proteção de Dados Pessoais (Lei 13.709/2018)](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm).
 
-**Última atualização:** 5 de novembro de 2026.
+**Última atualização:** 6 de novembro de 2026.
 
 ## Quem é a responsável pelos dados
 
@@ -38,8 +38,8 @@ As bases legais são a realização de procedimentos preliminares relacionados a
 
 ## Com quem os dados são compartilhados
 
-- **FormSubmit (formsubmit.co):** serviço que recebe o formulário do site e o encaminha para o e-mail da advogada. Ele pode processar os dados em servidores fora do Brasil.
-- **Provedor de hospedagem do site (Google Firebase):** responsável por manter o site no ar e pelos registros técnicos de acesso.
+- **Google Firebase / Google Cloud:** hospeda o site e recebe as mensagens do formulário, que ficam armazenadas em servidores no Brasil (região de São Paulo) com acesso restrito à advogada. Também mantém os registros técnicos de acesso.
+- **Resend (resend.com):** serviço que entrega por e-mail a mensagem do formulário à advogada e a confirmação automática de recebimento a você. Ele pode processar os dados em servidores fora do Brasil.
 - **WhatsApp:** quando você escolhe falar por esse canal.
 - **Autoridades públicas:** somente quando houver obrigação legal ou ordem judicial.
 

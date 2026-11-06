@@ -27,3 +27,11 @@ dist-ssr
 .firebase/
 firebase-debug.log
 firebase-debug.*.log
+
+# Firebase Functions / emuladores
+functions/*.local
+functions/.env.local
+firestore-debug.log
+ui-debug.log
+database-debug.log
+pubsub-debug.log

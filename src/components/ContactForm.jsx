@@ -1,9 +1,59 @@
-import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { SITE, SITE_URL } from '../config/site';
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Mail, MapPin, Phone, Send, MessageCircle, AlertTriangle } from 'lucide-react';
+import { SITE, CONTACT_FORM, whatsappLink } from '../config/site';
 import './ContactForm.css';
 
+// Monta a mesma mensagem para WhatsApp/e-mail quando o envio pelo formulário falha.
+function fallbackText({ name, phone, message }) {
+  return [
+    'Olá Dra. Alice!',
+    name && `Meu nome é ${name}.`,
+    phone && `Telefone: ${phone}.`,
+    message,
+  ].filter(Boolean).join(' ');
+}
+
 const ContactForm = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [status, setStatus] = useState('idle'); // idle | sending | error
+  const [draft, setDraft] = useState(null);
+
+  // Envio em segundo plano: se o serviço de formulário demorar ou falhar, a pessoa não fica presa
+  // numa tela de erro; aparece a opção de mandar o mesmo texto por WhatsApp ou e-mail.
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.elements._honey.value) return; // robô de spam
+
+    const data = new FormData(form);
+    const values = { name: data.get('name'), phone: data.get('phone'), message: data.get('message') };
+    setDraft(values);
+    setStatus('sending');
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), CONTACT_FORM.timeoutMs);
+    try {
+      const response = await fetch(CONTACT_FORM.endpoint, {
+        method: 'POST',
+        body: new URLSearchParams(data),
+        headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+        signal: controller.signal,
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.ok !== true) throw new Error(result.error || `HTTP ${response.status}`);
+      navigate('/obrigado');
+    } catch {
+      setStatus('error');
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
+  const sending = status === 'sending';
+  const text = draft ? fallbackText(draft) : '';
+
   return (
     <section id="contact-form" className="section contact-form-section">
       <div className="container">
@@ -39,19 +89,12 @@ const ContactForm = () => {
 
           <form
             className="form-content"
-            action={`https://formsubmit.co/${SITE.email}`}
+            action={CONTACT_FORM.endpoint}
             method="POST"
+            onSubmit={handleSubmit}
           >
-            {/* Configurações do FormSubmit */}
-            <input type="hidden" name="_subject" value="Nova mensagem pelo site - Portfólio Jurídico" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value={`${SITE_URL}/obrigado`} />
-            <input
-              type="hidden"
-              name="_autoresponse"
-              value="Sua mensagem foi recebida! Em breve entraremos em contato. Atenciosamente, Alice Gabriela Camargo."
-            />
+            {/* Página de onde o contato foi enviado (aparece no e-mail para a Dra. Alice) */}
+            <input type="hidden" name="page" value={pathname} />
             {/* Honeypot anti-spam */}
             <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
@@ -109,9 +152,29 @@ const ContactForm = () => {
               <Link to="/privacidade">Política de Privacidade</Link>.
             </p>
 
-            <button type="submit" className="btn btn-primary submit-btn">
-              Enviar Mensagem <Send size={18} aria-hidden="true" />
+            <button type="submit" className="btn btn-primary submit-btn" disabled={sending} aria-busy={sending}>
+              {sending ? 'Enviando...' : <>Enviar Mensagem <Send size={18} aria-hidden="true" /></>}
             </button>
+
+            {status === 'error' && (
+              <div className="form-fallback" role="alert">
+                <p className="form-fallback-title">
+                  <AlertTriangle size={18} aria-hidden="true" /> Não conseguimos enviar pelo formulário agora.
+                </p>
+                <p>Para não perder seu contato, envie a mesma mensagem por um destes canais (o texto já vai preenchido):</p>
+                <div className="form-fallback-actions">
+                  <a href={whatsappLink(text)} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                    <MessageCircle size={18} aria-hidden="true" /> Enviar pelo WhatsApp
+                  </a>
+                  <a
+                    href={`mailto:${SITE.email}?subject=${encodeURIComponent('Contato pelo site')}&body=${encodeURIComponent(text)}`}
+                    className="btn btn-outline"
+                  >
+                    <Mail size={18} aria-hidden="true" /> Enviar por e-mail
+                  </a>
+                </div>
+              </div>
+            )}
           </form>
         </div>
       </div>
