@@ -89,6 +89,8 @@ function ogSpec(route) {
       return { kicker: 'Área de atuação', title: m.headline || m.title, subtitle: 'Taubaté e região · Online em todo o Brasil' };
     case 'service':
       return { kicker: getAreaTitle(m.area), title: m.headline || m.title };
+    case 'city':
+      return { kicker: `Atendimento em ${m.city}`, title: m.headline || m.title, subtitle: 'Presencial com agendamento na região · Online em todo o Brasil' };
     case 'about':
       return { big: true, kicker: 'Sobre', title: 'Dra. Alice Gabriela Camargo', subtitle: 'Advogada · Graduada pela UNITAU' };
     case 'contact':

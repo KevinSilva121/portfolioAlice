@@ -239,3 +239,15 @@ node -e "const fm=require('front-matter'),fs=require('fs');for(const f of proces
 - Serviços: `/direito-previdenciario/aposentadoria-negada-inss`, `/direito-previdenciario/bpc-loas`, `/direito-previdenciario/auxilio-doenca`, `/direito-trabalhista/rescisao-indireta`, `/direito-de-familia/divorcio`, `/direito-de-familia/pensao-alimenticia`, `/direito-de-familia/inventario`
 - Artigos: `/blog/direitos-trabalhistas-home-office`, `/blog/direitos-voo-atraso`, `/blog/distrato-imovel`, `/blog/guarda-compartilhada`, `/blog/importancia-assessoria`, `/blog/planejamento-previdenciario`
 - Depois de publicados, os novos artigos também podem ser usados como links internos.
+
+## Artigos locais (plano de ranqueamento, 11/11/2026)
+
+Escritos para apoiar as páginas de cidade ([PLANO-RANKING-LOCAL.md](PLANO-RANKING-LOCAL.md)). Todos linkam para `/advogada-taubate`, `/advogada-sao-jose-dos-campos` ou `/advogada-trabalhista-sao-jose-dos-campos`.
+
+1. Ação trabalhista passo a passo: como funciona em Taubaté e São José dos Campos ✅ escrito em 11/11/2026 (`/blog/acao-trabalhista-passo-a-passo`)
+2. PDV e demissão coletiva: o que conferir antes de assinar ✅ escrito em 11/11/2026 (`/blog/pdv-e-demissao-coletiva`)
+3. Lay-off: como funciona a suspensão do contrato de trabalho ✅ escrito em 11/11/2026 (`/blog/lay-off-suspensao-do-contrato`)
+4. Estabilidade no emprego: quem não pode ser demitido sem justa causa ✅ escrito em 11/11/2026 (`/blog/estabilidade-no-emprego`)
+5. Ação contra o INSS em Taubaté e São José dos Campos: onde entrar e como funciona ✅ escrito em 11/11/2026 (`/blog/acao-contra-o-inss-taubate-sjc`)
+
+Todos aguardam a revisão jurídica (seção "Acréscimos de 11/11/2026" do REVISAO-JURIDICA.md).

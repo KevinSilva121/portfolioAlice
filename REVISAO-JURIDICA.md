@@ -172,3 +172,50 @@ Estas normas foram citadas sem ler o texto oficial. Conferir no Diário Oficial 
 ---
 
 Quando tudo estiver revisado, o conteúdo pode ser publicado junto com a migração (ver [MIGRACAO-DNS-FIREBASE.md](MIGRACAO-DNS-FIREBASE.md)).
+
+## Acréscimos de 11/11/2026: páginas de cidade e artigos locais
+
+Conteúdo novo, ainda não revisado pela Dra. Alice. Os dados de jurisdição trabalhista foram conferidos na [tabela oficial do TRT-15](https://trt15.jus.br/contato/jurisdicao) em 11/11/2026. O site do TRF3 não abriu durante a pesquisa.
+
+### Páginas de cidade
+
+- [ ] **Atendimento em São José dos Campos:** as páginas dizem "atendimento online para quem é de SJC, com reuniões presenciais agendadas na região". Confirmar se é isso mesmo ou se ela atende presencialmente em SJC.
+- [ ] **Justiça Federal:** Taubaté = 21ª Subseção e SJC = 3ª Subseção, ambas com JEF. Os municípios de cada subseção não foram listados (TRF3 fora do ar).
+- [ ] **Contrato de honorários** "por escrito, como recomenda o Código de Ética" (art. 48 do CED: "preferentemente").
+- [ ] **Procuração assinada eletronicamente** e "originais só quando necessários".
+- [ ] **Turnos de revezamento:** 6 horas (art. 7º, XIV, CF) e Súmula 423 do TST (até 8 horas por negociação coletiva).
+
+### Ação trabalhista passo a passo
+
+- [ ] Art. 844, § 2º, da CLT (custas para quem falta, mesmo com justiça gratuita) mantido pelo STF na ADI 5766.
+- [ ] Justiça gratuita: "a declaração de insuficiência basta, salvo prova em contrário", conforme o entendimento atual do TST (incidente de recursos repetitivos de 2024, citado de memória).
+- [ ] Honorários de sucumbência com justiça gratuita: suspensos por 2 anos (ADI 5766).
+- [ ] Testemunhas: 3 no rito ordinário e 2 no sumaríssimo (arts. 821 e 852-H da CLT).
+
+### PDV e demissão coletiva
+
+- [ ] Art. 477-B da CLT e Tema 152 do STF (quitação ampla só se constar expressamente do acordo e dos documentos).
+- [ ] Tema 638 do STF: intervenção sindical prévia, aplicada a dispensas posteriores ao julgamento (modulação citada de forma genérica).
+- [ ] Súmula 215 do STJ (incentivo do PDV isento de IR).
+- [ ] Plano de saúde, FGTS e seguro-desemprego tratados como "depende de como a saída é registrada".
+
+### Lay-off
+
+- [ ] Art. 476-A da CLT, §§ 1º a 7º (resumidos).
+- [ ] Bolsa de qualificação: arts. 2º-A e 3º-A da Lei 7.998/1990 (valor e parcelas pelas regras do seguro-desemprego).
+- [ ] ⚠️ "Em regra, não há depósito de FGTS durante a suspensão, salvo previsão no acordo coletivo": conferir.
+
+### Estabilidade no emprego
+
+- [ ] Gestante em contrato por prazo determinado: Súmula 244, III, x Tema 497 do STF, e trabalho temporário sem estabilidade (IAC do TST de 2019). O artigo diz que "há discussão".
+- [ ] ⚠️ Pedido de demissão da gestante só válido com assistência sindical (art. 500 da CLT, segundo a jurisprudência do TST): conferir se ainda é o entendimento predominante.
+- [ ] Súmulas 339, 369, 378, 379, 396 e 443 do TST e OJ 399 da SDI-1 (citadas de memória).
+- [ ] Comissão de representantes (art. 510-D, § 3º) e CCP (art. 625-B, § 1º).
+
+### Ação contra o INSS em Taubaté e SJC
+
+- [ ] Tema 350 do STF (pedido prévio, sem necessidade de esgotar a via administrativa).
+- [ ] Prazo de 30 dias para recurso ao CRPS (art. 305 do Decreto 3.048/1999).
+- [ ] JEF: 60 salários mínimos, renúncia ao excedente (Tema 1030 do STJ), dispensa de advogado na 1ª instância (ADI 3.168) e RPV em 60 dias (art. 17 da Lei 10.259/2001).
+- [ ] Acidentárias na Justiça Estadual (art. 109, I, CF; Súmula 15 do STJ) e isenção do art. 129, parágrafo único, da Lei 8.213/1991.
+- [ ] Prazos: 5 anos de atrasados e 10 anos para revisão (art. 103), sem prazo para o pedido do benefício em si (Tema 313 do STF e ADI 6096, não citados no texto).

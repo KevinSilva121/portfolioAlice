@@ -13,12 +13,13 @@ import Home from './pages/Home';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
 import LandingPage from './pages/LandingPage';
+import CityPage from './pages/CityPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import DocPage from './pages/DocPage';
 import ThanksPage from './pages/ThanksPage';
 import NotFound from './pages/NotFound';
-import { areas, services, areaPath, servicePath, getPage } from './content';
+import { areas, services, cities, areaPath, servicePath, cityPath, getPage } from './content';
 import './App.css';
 
 // O roteador (BrowserRouter no navegador, StaticRouter no build) fica em main.jsx / entry-server.jsx.
@@ -47,6 +48,9 @@ function App() {
                 path={servicePath(service)}
                 element={<LandingPage collection="servicos" slug={service.slug} />}
               />
+            ))}
+            {cities.map((city) => (
+              <Route key={city.slug} path={cityPath(city.slug)} element={<CityPage slug={city.slug} />} />
             ))}
             {getPage('sobre') && <Route path="/sobre" element={<AboutPage />} />}
             {getPage('privacidade') && <Route path="/privacidade" element={<DocPage slug="privacidade" />} />}

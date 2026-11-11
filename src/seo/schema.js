@@ -10,6 +10,11 @@ const PHOTO = `${SITE_URL}/alice.png`;
 
 const areaServed = [
   { '@type': 'City', name: SITE.city },
+  // Cidades vizinhas atendidas (presencial com agendamento na região ou online).
+  { '@type': 'City', name: 'São José dos Campos' },
+  { '@type': 'City', name: 'Tremembé' },
+  { '@type': 'City', name: 'Pindamonhangaba' },
+  { '@type': 'City', name: 'Caçapava' },
   { '@type': 'AdministrativeArea', name: SITE.region },
   { '@type': 'Country', name: 'Brasil' },
 ];
@@ -96,6 +101,17 @@ export const service = (doc, url, areaTitle) => ({
   url,
   areaServed,
   provider: { '@type': 'LegalService', name: SITE.brand, url: `${SITE_URL}/` },
+});
+
+// Página de atendimento em uma cidade: o serviço advocatício com a cidade como área atendida.
+export const cityService = (doc, url) => ({
+  '@type': 'Service',
+  name: doc.title,
+  serviceType: doc.serviceType || 'Serviços advocatícios',
+  description: doc.description,
+  url,
+  areaServed: { '@type': 'City', name: doc.city, containedInPlace: { '@type': 'State', name: 'São Paulo' } },
+  provider: orgRef,
 });
 
 export const blog = (url) => ({

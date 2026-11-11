@@ -8,12 +8,14 @@ const blogMeta = metaOf(import.meta.glob('./blog/*.md', { query: '?meta', import
 const areaMeta = metaOf(import.meta.glob('./areas/*.md', { query: '?meta', import: 'default', eager: true }));
 const serviceMeta = metaOf(import.meta.glob('./servicos/*.md', { query: '?meta', import: 'default', eager: true }));
 const pageMeta = metaOf(import.meta.glob('./paginas/*.md', { query: '?meta', import: 'default', eager: true }));
+const cityMeta = metaOf(import.meta.glob('./cidades/*.md', { query: '?meta', import: 'default', eager: true }));
 
 const loaders = {
   blog: import.meta.glob('./blog/*.md', { import: 'default' }),
   areas: import.meta.glob('./areas/*.md', { import: 'default' }),
   servicos: import.meta.glob('./servicos/*.md', { import: 'default' }),
   paginas: import.meta.glob('./paginas/*.md', { import: 'default' }),
+  cidades: import.meta.glob('./cidades/*.md', { import: 'default' }),
 };
 
 // Nomes das áreas caso o .md da área ainda não exista (usado em categorias de artigos).
@@ -27,19 +29,24 @@ const AREA_FALLBACK_TITLES = {
 export const posts = [...blogMeta].sort((a, b) => new Date(b.date) - new Date(a.date));
 export const areas = [...areaMeta].sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 export const services = [...serviceMeta].sort((a, b) => a.title.localeCompare(b.title, 'pt-BR'));
+// Páginas de atendimento por cidade (/advogada-taubate, /advogada-sao-jose-dos-campos...).
+export const cities = [...cityMeta].sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 
 const bySlug = (list) => Object.fromEntries(list.map((item) => [item.slug, item]));
 const postsBySlug = bySlug(posts);
 const areasBySlug = bySlug(areas);
 const pagesBySlug = bySlug(pageMeta);
+const citiesBySlug = bySlug(cities);
 
 export const postPath = (slug) => `/blog/${slug}`;
 export const areaPath = (slug) => `/${slug}`;
 export const servicePath = (service) => `/${service.area}/${service.slug}`;
+export const cityPath = (slug) => `/${slug}`;
 
 export const getPost = (slug) => postsBySlug[slug];
 export const getArea = (slug) => areasBySlug[slug];
 export const getPage = (slug) => pagesBySlug[slug];
+export const getCity = (slug) => citiesBySlug[slug];
 export const getRecentPosts = (limit = 3) => posts.slice(0, limit);
 export const getAreaTitle = (slug) => areasBySlug[slug]?.title || AREA_FALLBACK_TITLES[slug] || '';
 export const postsInArea = (areaSlug) => posts.filter((post) => post.category === areaSlug);
@@ -77,6 +84,7 @@ export function resolveRoute(pathname) {
 
   match = path.match(/^\/([^/]+)$/);
   if (match && areasBySlug[match[1]]) return { type: 'area', path, meta: areasBySlug[match[1]], collection: 'areas' };
+  if (match && citiesBySlug[match[1]]) return { type: 'city', path, meta: citiesBySlug[match[1]], collection: 'cidades' };
 
   match = path.match(/^\/([^/]+)\/([^/]+)$/);
   if (match) {
@@ -95,6 +103,7 @@ export function getAllPaths() {
     ...posts.map((p) => postPath(p.slug)),
     ...areas.map((a) => areaPath(a.slug)),
     ...services.map(servicePath),
+    ...cities.map((c) => cityPath(c.slug)),
     ...(pagesBySlug.sobre ? ['/sobre'] : []),
     '/contato',
     ...(pagesBySlug.privacidade ? ['/privacidade'] : []),
@@ -111,6 +120,7 @@ export function getBreadcrumbs(pathname) {
     case 'post':
       return [home, { name: 'Blog', path: '/blog' }, { name: route.meta.title, path: route.path }];
     case 'area':
+    case 'city':
       return [home, { name: route.meta.title, path: route.path }];
     case 'service':
       return [

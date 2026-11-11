@@ -25,6 +25,7 @@ function describe(route) {
       return { title: meta.seoTitle || withSuffix(meta.title), description: meta.description || meta.excerpt, type: 'article' };
     case 'area':
     case 'service':
+    case 'city':
       return { title: meta.seoTitle || withSuffix(meta.headline || meta.title), description: meta.description };
     case 'about':
     case 'page':
@@ -54,6 +55,8 @@ function structuredData(route, url, image) {
       return schema.graph(schema.service(route.meta, url, route.meta.title), crumbs);
     case 'service':
       return schema.graph(schema.service(route.meta, url, getAreaTitle(route.meta.area)), crumbs);
+    case 'city':
+      return schema.graph(schema.cityService(route.meta, url), crumbs);
     case 'about':
       return schema.graph(schema.profilePage(url), crumbs);
     case 'contact':

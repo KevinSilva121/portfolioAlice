@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { SITE, whatsappLink } from '../config/site';
-import { areas, areaPath } from '../content';
+import { areas, areaPath, cities, cityPath } from '../content';
 import './Footer.css';
 
 const Footer = () => {
@@ -72,6 +72,15 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+
+      {cities.length > 0 && (
+        <nav className="container footer-cities" aria-label="Atendimento por cidade">
+          <span className="footer-cities-label">Atendimento:</span>
+          {cities.map((city) => (
+            <Link key={city.slug} to={cityPath(city.slug)}>{city.title}</Link>
+          ))}
+        </nav>
+      )}
 
       <div className="footer-bottom">
         <div className="container">

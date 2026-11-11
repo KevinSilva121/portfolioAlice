@@ -164,3 +164,29 @@
     padding-bottom: 4rem; /* Evita que o botão flutuante bloqueie o texto em telas pequenas */
   }
 }
+
+/* Linha de atendimento por cidade (acima do rodapé final).
+   .footer .footer-cities: mais específico que .container (index.css), que zera margem e espaçamento. */
+.footer .footer-cities {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.9rem;
+}
+
+.footer-cities-label {
+  color: var(--text-muted);
+}
+
+.footer-cities a {
+  color: var(--text-secondary);
+}
+
+.footer-cities a:hover {
+  color: var(--accent-gold);
+}
